@@ -33,7 +33,7 @@ local opts_expr = {
 }
 
 -- nvimTree
-map('n', '<A-m>', ':NvimTreeToggle<CR>', opt)
+map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
 
 -- 命令行下 Ctrl+j/k  上一个下一个
 keymap("c", keys.c_next_item, "<C-n>", opts_remap)
@@ -72,6 +72,8 @@ else
 end
 
 -------------------- fix ------------------------------
+vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>FineCmdline<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>s", ":SearchBoxIncSearch<CR>")
 
 -- fix :set wrap
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", opts_expr)

@@ -53,7 +53,7 @@ packer.startup({
       config = function()
         require("plugin-config.nvim-tree")
       end,
-     })
+    })
 
     -- bufferline
     use({
@@ -97,14 +97,14 @@ packer.startup({
     -- })
 
     use({
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
-    config = function()
-      require('dashboard').setup {
-        -- config
-      }
+      "glepnir/dashboard-nvim",
+      event = "VimEnter",
+      config = function()
+        require("dashboard").setup({
+          -- config
+        })
       end,
-      requires = {'nvim-tree/nvim-web-devicons'}
+      requires = { "nvim-tree/nvim-web-devicons" },
     })
 
     -- project
@@ -321,6 +321,22 @@ packer.startup({
       end,
     })
 
+    -- install without yarn or npm
+    --use({
+    --  "iamcco/markdown-preview.nvim",
+    --  run = function()
+    --    vim.fn["mkdp#util#install"]()
+    --  end,
+    --})
+
+    use({
+      "iamcco/markdown-preview.nvim",
+      run = "cd app && npm install",
+      setup = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+      end,
+      ft = { "markdown" },
+    })
     -- go
     use("leoluz/nvim-dap-go")
 
@@ -338,6 +354,32 @@ packer.startup({
 
     -- use("jbyuki/one-small-step-for-vimkind")
     --[[ use("dstein64/vim-startuptime") ]]
+
+    use({
+      "dpayne/CodeGPT.nvim",
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+      },
+      config = function()
+        require("codegpt.config")
+        require("plugin-config.codegpt")
+      end,
+    })
+
+    use({
+      "VonHeikemen/fine-cmdline.nvim",
+      requires = {
+        { "MunifTanjim/nui.nvim" },
+      },
+    })
+
+    use({
+      "VonHeikemen/searchbox.nvim",
+      requires = {
+        { "MunifTanjim/nui.nvim" },
+      },
+    })
 
     if paccker_bootstrap then
       packer.sync()
