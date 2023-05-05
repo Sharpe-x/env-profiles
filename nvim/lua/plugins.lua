@@ -363,7 +363,7 @@ packer.startup({
       },
       config = function()
         require("codegpt.config")
-        require("plugin-config.codegpt")
+        require("plugin-config.gptcode")
       end,
     })
 
@@ -380,6 +380,14 @@ packer.startup({
         { "MunifTanjim/nui.nvim" },
       },
     })
+
+    use({
+      "ray-x/go.nvim",
+      config = function()
+        require("plugin-config.go_nvim")
+      end,
+    })
+    use("ray-x/guihua.lua") -- recommended if need floating window support
 
     if paccker_bootstrap then
       packer.sync()
